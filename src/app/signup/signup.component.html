@@ -1,0 +1,154 @@
+<main>
+  <section class="section section-shaped section-lg">
+    <div class="shape shape-style-1 bg-gradient-default">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="container pt-lg-md">
+      <div class="row justify-content-center">
+        <div class="col-lg-5">
+          <div class="card bg-secondary shadow border-0">
+            <div class="card-header bg-white pb-5">
+              <!--
+              <div class="text-muted text-center mb-3">
+                <small>Sign up with</small>
+              </div>
+              <div class="text-center">
+                <a href="javascript:void(0)" class="btn btn-neutral btn-icon mr-4">
+                  <span class="btn-inner--icon">
+                    <img src="./assets/img/icons/common/github.svg">
+                  </span>
+                  <span class="btn-inner--text">Github</span>
+                </a>
+                <a href="javascript:void(0)" class="btn btn-neutral btn-icon">
+                  <span class="btn-inner--icon">
+                    <img src="./assets/img/icons/common/google.svg">
+                  </span>
+                  <span class="btn-inner--text">Google</span>
+                </a>
+              </div>
+              -->
+            </div>
+            <div class="card-body px-lg-5 py-lg-5">
+              <div class="text-center text-muted mb-4">
+                <small>Or sign up with credentials</small>
+              </div>
+              <form role="form" [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+                <div class="form-group" [ngClass]="{'focused':focus===true}">
+                  <div class="input-group input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                    </div>
+                    <input class="form-control" placeholder="Name" type="text" (focus)="focus=true" (blur)="focus=false" formControlName = "display_name">
+                  </div>
+                </div>
+                <div class="text-muted font-italic" *ngIf="display_name.errors && (display_name.dirty || display_name.touched)" >
+                  <div>
+                    <small>
+                      <span class="text-warning font-weight-700" *ngIf="display_name.errors.required">Nick Name is required.</span>
+                    </small>
+                  </div>
+                </div>
+                <div class="form-group" [ngClass]="{'focused':focus3===true}">
+                  <div class="input-group input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-mobile-button"></i></span>
+                    </div>
+                    <input class="form-control" placeholder="Phone" type="text" (focus)="focus3=true" (blur)="focus3=false" formControlName = "phone">
+                  </div>
+                </div>
+                <div class="text-muted font-italic" *ngIf="phone.errors && (phone.dirty || phone.touched)" >
+                  <div>
+                    <small>
+                      <span class="text-warning font-weight-700" *ngIf="phone.errors.required">Phone number is required.</span>
+                    </small>
+                  </div>
+                </div>
+                <div class="form-group" [ngClass]="{'focused':focus1===true}">
+                  <div class="input-group input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                    </div>
+                    <input class="form-control" placeholder="Email (Use for login)" type="email" (focus)="focus1=true" (blur)="focus1=false" formControlName = "email">
+                  </div>
+                </div>
+                <div class="text-muted font-italic" *ngIf="email.errors && (email.dirty || email.touched)" >
+                  <div>
+                    <small>
+                      <span class="text-warning font-weight-700" *ngIf="email.errors.required">Email is required.</span>
+                    </small>
+                  </div>
+                  <div>
+                    <small>
+                      <span class="text-warning font-weight-700" *ngIf="email.errors.email">Email format is not correct.</span>
+                    </small>
+                  </div>
+                </div>
+                <div class="form-group" [ngClass]="{'focused':focus2===true}">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                    </div>
+                    <input class="form-control" placeholder="Password" type="password" (focus)="focus2=true" (blur)="focus2=false" formControlName = "password">
+                  </div>
+                </div>
+                <div class="text-muted font-italic" *ngIf="password.errors && (password.dirty || password.touched)"  >
+                  <div>
+                    <small>
+                      <span class="text-warning font-weight-700" *ngIf="password.errors.required">Password is required.</span>
+                    </small>
+                  </div>
+                </div>
+                <div class="row my-4">
+                  <div class="col-12">
+                    <div class="custom-control custom-control-alternative custom-checkbox">
+                      <input class="custom-control-input" id="customCheckRegister" type="checkbox" [checked]="policyConsent" (change)="policyConsent = !policyConsent">
+                      <label class="custom-control-label" for="customCheckRegister">
+                        <span>I agree with the
+                          <a href="javascript:void(0)">Privacy Policy</a> {{policyConsent}} - {{signUpForm.valid}}
+                        </span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary mt-4" [disabled]="!policyConsent || !signUpForm.valid">Create account</button>
+                </div>
+              </form>
+              <button class="btn btn-block btn-warning mb-3" (click)="open(signUpModal, 'Notification', '')">
+                Notification
+              </button>
+              <ng-template #signUpModal let-c="close" let-d="dismiss">
+                <div class="modal-content bg-gradient-success">
+                  <div class="modal-header">
+                    <h6 class="modal-title" id="modal-title-notification">Sign Up</h6>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="d('Cross click')">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="py-3 text-center">
+                      <i class="ni ni-check-bold ni-5x"></i>
+                      <h4 class="heading mt-4">Registration success</h4>
+                      <p>Congratulations, your account has been successfully created </p>
+                    </div>
+                  </div>
+                  <div class="modal-footer text-center">
+                    <button type="button" class="btn btn-white text-center">Continue</button>
+                    <button type="button" class="btn btn-link text-white ml-auto" data-dismiss="modal" (click)="c('Close click')">Close</button>
+                  </div>
+                </div>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
