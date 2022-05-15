@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Users } from '../_interface/users';
-import { SignupService } from './signup.service';
+import { SignUpService } from './signup.service';
 import { Router } from '@angular/router';
 
 
@@ -28,7 +28,7 @@ export class SignupComponent implements OnInit {
     phone: FormControl;
     email: FormControl;
     password: FormControl;
-    constructor(private signupService:SignupService,private modalService: NgbModal,private router: Router) { }
+    constructor(private signUpService:SignUpService,private modalService: NgbModal,private router: Router) { }
 
     ngOnInit() {
 
@@ -46,10 +46,10 @@ export class SignupComponent implements OnInit {
         } else if (modalDimension === '' && type === 'Notification') {
           this.modalService.open(content, { windowClass: 'modal-success', centered: true, backdrop:true, animation:true}).result.then((result) => {
               this.closeResult = `Closed with: $result`;
-              console.log("result"+ result);
+              this.router.navigateByUrl('/login');
           }, (reason) => {
               this.closeResult = `Dismissed $this.getDismissReason(reason)`;
-              console.log("reason"+reason);
+              this.router.navigateByUrl('/login');
           });
         } else {
             this.modalService.open(content,{ centered: true }).result.then((result) => {
@@ -96,24 +96,17 @@ export class SignupComponent implements OnInit {
             password: this.password.value
 
         };
-        //console.log(this.classic2.nativeElement.innerHTML);
-        
-        //console.log(this.signUpForm);
-        this.signupService.addUsers(this.users).subscribe((data) => {
+
+        ;
+        this.signUpService.addUsers(this.users).subscribe((data) => {
             console.log(data); 
             if(data.rowsAffected == 1){
                 this.open(this.signUpModal,'Notification', '');
-                //this.router.navigateByUrl('/qrcode');
             }
             
-            //this.signUpForm.reset();
-            //open(this.classic2, 'Notification', '')
         }); 
         
 
     }
 
-    signUpSubmit():void{
-        //this.signUpForm.res
-    }
 }

@@ -4,9 +4,9 @@ export interface Users {
     password: string;
     encrypted_password?: string;
     email: string;
-    phone: string;
+    phone?: string;
     avatar?: string;
-    display_name: string;
+    display_name?: string;
     first_name?: string;
     last_name?: string;
     facebook?: string;

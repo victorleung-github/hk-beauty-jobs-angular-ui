@@ -9,15 +9,18 @@ import { SignupComponent } from './signup/signup.component';
 import { LandingComponent } from './landing/landing.component';
 import { LoginComponent } from './login/login.component';
 import { JobsComponent } from './jobs/jobs.component';
-
+import { JobTypesComponent } from './job-types/job-types.component';
+import { AuthGuard } from './auth/auth.guard';
 const routes: Routes =[
     { path: 'home',             component: HomeComponent },
     { path: 'user-profile',     component: ProfileComponent },
     { path: 'register',           component: SignupComponent },
     { path: 'landing',          component: LandingComponent },
     { path: 'login',          component: LoginComponent },
-    { path: 'jobs',          component: JobsComponent },
-    { path: '', redirectTo: 'jobs', pathMatch: 'full' }
+    { path: 'jobs',          component: JobsComponent ,canActivate: [AuthGuard]},
+    { path: 'job-types',          component: JobTypesComponent},
+    { path: '', redirectTo: 'job-types', pathMatch: 'full' },
+    { path: '**', redirectTo: 'job-types', pathMatch: 'full' }
 ];
 
 @NgModule({

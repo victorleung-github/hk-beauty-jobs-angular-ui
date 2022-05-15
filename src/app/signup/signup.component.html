@@ -37,7 +37,7 @@
             </div>
             <div class="card-body px-lg-5 py-lg-5">
               <div class="text-center text-muted mb-4">
-                <small>Or sign up with credentials</small>
+                <small>Sign up with credentials</small>
               </div>
               <form role="form" [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
                 <div class="form-group" [ngClass]="{'focused':focus===true}">
@@ -51,7 +51,7 @@
                 <div class="text-muted font-italic" *ngIf="display_name.errors && (display_name.dirty || display_name.touched)" >
                   <div>
                     <small>
-                      <span class="text-warning font-weight-700" *ngIf="display_name.errors.required">Nick Name is required.</span>
+                      <span class="text-warning font-weight-700" *ngIf="display_name.errors.required">Display Name is required.</span>
                     </small>
                   </div>
                 </div>
@@ -140,8 +140,7 @@
                     </div>
                   </div>
                   <div class="modal-footer text-center">
-                    <button type="button" class="btn btn-white text-center">Continue</button>
-                    <button type="button" class="btn btn-link text-white ml-auto" data-dismiss="modal" (click)="c('Close click')">Close</button>
+                    <button type="button" class="btn btn-link text-white ml-auto" data-dismiss="modal" (click)="c('Close click')">Continue</button>
                   </div>
                 </div>
               </ng-template>

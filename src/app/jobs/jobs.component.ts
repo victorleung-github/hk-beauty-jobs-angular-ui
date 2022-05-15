@@ -46,7 +46,8 @@ export class JobsComponent implements OnInit {
   }
 
   getJobs(){
-    this.jobsService.getJobs().subscribe((data)=>{
+    
+    this.jobsService.getJobs().toPromise().then((data)=>{
       
       this.jobsList = data;
       this.jobsList_3col = [];
@@ -57,7 +58,7 @@ export class JobsComponent implements OnInit {
       //while (this.jobsList.length) {
         //this.jobsList_3col.push(this.jobsList.splice(0, 3));
       //} 
-      console.log(this.jobsList_3col);
+      //console.log(this.jobsList_3col);
   
     },
       

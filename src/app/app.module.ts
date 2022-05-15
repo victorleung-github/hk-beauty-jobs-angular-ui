@@ -20,6 +20,7 @@ import { LoginComponent } from './login/login.component';
 import { JobsComponent } from './jobs/jobs.component';
 import { TopnavbarComponent } from './shared/topnavbar/topnavbar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { JobTypesComponent } from './job-types/job-types.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FooterComponent,
     LoginComponent,
     JobsComponent,
-    TopnavbarComponent
+    TopnavbarComponent,
+    JobTypesComponent
   ],
   imports: [
     BrowserModule,
